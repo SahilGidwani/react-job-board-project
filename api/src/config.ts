@@ -11,7 +11,7 @@ export const env = createEnv({
     SESSION_SECRET: z.string().min(32),
     PORT: z
       .string()
-      .default("3001")
+      .default("3000")
       .transform(s => parseInt(s))
       .pipe(z.number()),
   },
