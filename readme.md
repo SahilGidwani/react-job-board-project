@@ -1,24 +1,22 @@
 # Job board project implementation
 This repo contains the job board project [implementation](https://github.com/WebDevSimplified/React-Simplified-Bonus-Project/tree/main/job-board/before) of [React simplified](https://courses.webdevsimplified.com/view/courses/react-simplified-bonus-projects) course  [React Basic and Intermediate] course.
 
-## Backend Lead Introduction
+### Frontend Setup
 
-Hey. I am the backend lead for this project. You shouldn't have to mess much with the backend, but I wanted to give you a quick overview of how things work. We use a library called `Prisma` to handle our database connections. You shouldn't really need to interact with it at all.
+To get the frontend setup running you will need to do the following:
+1. Navigate to the client folder `cd client`
+2. Run `npm install`
+3. Run `npm run dev`
 
-To get the backend setup you will need to do the following:
+### Backend Setup
+
+To get the backend setup running you will need to do the following:
 
 1. Install Sqlite on your machine
 2. Run `npm i`
 3. Copy the `.env.example` file to `.env`
 4. Run `npx prisma db push`
 5. Run `npm run dev`
-
-Now I know you don't really care about the backend, but there are a few folders/files that you may need to use on the client.
-
-1. `constants` - The constants folder contains all our types/schemas on the backend which you may need on the frontend for things like form validation.
-2. `utils/getJobListingPriceInCents.ts` - This file is something you will need to determine the price of the job listing.
-
-Other than those few files all you really need to know is how the API works.
 
 ### API Documentation
 
@@ -45,8 +43,7 @@ Overall the API is broken down into 3 main routes which will each help you tackl
 1. `POST /stripe-webhooks/job-listing-order-complete` - This is not a route that you will need to directly call. Stripe will call this route for us whenever a payment is successfully made and it will update the job listing with the new expiration date. Our dev ops team will set up this webhook in production, but to test this webhook locally you will need to use Stripe's CLI. I will explain more about that in the next section.
 
 ### Stripe Setup
-
-I already mentioned a little bit about the Stripe setup, but I wanted to go into a little more detail here. We use Stripe to handle all of our payments. This means that you will need to create a Stripe account to test the application. Stripe will ask you for a bunch of information in order to accept payment in production, but you can skip most of that as your account will only ever be needed for testing in development. The most important thing you will need from Stripe is your secret API key. This should be saved in your .env file as `STRIPE_SECRET_KEY`. You will see that we have a `.env.example` file that you can copy to get the basic env variables setup.
+We use Stripe to handle all of our payments. This means that you will need to create a Stripe account to test the application. Stripe will ask you for a bunch of information in order to accept payment in production, but you can skip most of that as your account will only ever be needed for testing in development. The most important thing you will need from Stripe is your secret API key. This should be saved in your .env file as `STRIPE_SECRET_KEY`. You will see that we have a `.env.example` file that you can copy to get the basic env variables setup.
 
 #### Webhook Setup
 
@@ -66,13 +63,3 @@ Once you run the `stripe listen` command you should see a webhook signing secret
 ### Other Environment Variables
 
 The only other thing you need to change is the `SESSION_SECRET`. This should be set to something random. For testing purposes you can leave it as is or just create something like a random UUID, but in production our devops team will create a unique secrets for us to use.
-
-## Tasks
-
-The tasks you need to complete are saved as issues on the GitHub repository. They will include all the information you need about the tasks as well as any mockups. You can find the issues [here](https://github.com/WebDevSimplified/React-Simplified-Bonus-Project/issues). I would recommend tackling the issues in the following order but it is entirely up to you.
-
-1. Navbar and Light/Dark mode.
-2. User Authentication
-3. Create/Edit/Delete Job Listings
-4. Job Listing Payments
-5. Job Board/Filtering
